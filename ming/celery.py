@@ -10,7 +10,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ming.settings')
 
 from django.conf import settings  # noqa
 
-app = Celery('ming', backend='redis://', broker='pyamqp://')
+app = Celery('ming', backend=settings.CELERY_RESULT_BACKEND, broker=settings.BROKER_URL)
 
 # Using a string here means the worker will not have to
 # pickle the object when using Windows.

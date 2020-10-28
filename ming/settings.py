@@ -28,8 +28,8 @@ ALLOWED_HOSTS = ['*']
 SITE_ID = 1
 
 ### Celery
-BROKER_URL = 'redis://'
-CELERY_RESULT_BACKEND='redis://',
+BROKER_URL = 'pyamqp://rabbitmq:5672'
+CELERY_RESULT_BACKEND='redis://redis:6379'
 #: Only add pickle to this list if your broker is secured
 #: from unwanted access (see userguide/security.html)
 CELERY_ACCEPT_CONTENT = ['json']
@@ -37,7 +37,6 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERYD_PREFETCH_MULTIPLIER = 2
 CELERY_ACKS_LATE = True
-
 ###
 
 ###
@@ -45,10 +44,10 @@ CELERY_ACKS_LATE = True
 
 BLOCKS_PER_EPOCH = 360
 CHAIN_ID = 558
-#RPC_ENDPOINT = 'wss://rpc.tao.network'
-RPC_ENDPOINT = 'ws://localhost:8546'
-#RESTFUL_ENDPOINT = 'https://rpc.tao.network'
-RESTFUL_ENDPOINT = 'http://localhost:8545'
+RPC_ENDPOINT = 'wss://rpc.tao.network'
+#RPC_ENDPOINT = 'ws://localhost:8546'
+RESTFUL_ENDPOINT = 'https://rpc.tao.network'
+#RESTFUL_ENDPOINT = 'http://localhost:8545'
 VALIDATOR_CONTRACT_ADDRESS = '0x0000000000000000000000000000000000000088'
 SIGNER_CONTRACT_ADDRESS = '0x0000000000000000000000000000000000000089'
 RANDOMIZER_CONTRACT_ADDRESS = '0x0000000000000000000000000000000000000090'
@@ -131,7 +130,7 @@ DATABASES = {
         'NAME': 'tao_api',
         'USER': 'postgres',
         'PASSWORD': 'password',
-        'HOST': 'localhost',
+        'HOST': 'postgres',
         'PORT': '5432',
     }
 
