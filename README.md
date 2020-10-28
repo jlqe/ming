@@ -19,7 +19,7 @@ Make sure to set your Postgres password in docker-compose.yml and set it accordi
 # Running
 
 ```
-PGDATA=/var/lib/postgresql/data docker-compose up
+docker-compose up
 ```
 
 Celery is used to fork worker processes to import blockchain data each block.  This includes tokens (TRC20, TRC21, TRC721), smart contracts, and governance data.
@@ -30,3 +30,8 @@ The docker-compose configuration is intended for development ONLY! Do not use in
 
 # Notes
 In a production environment multiple workers are used in order to crawl the entire chain from block 0 in a timely manner.  After the initial crawl only a single worker is required to keep the chain current, however multiple workers provides redundancy.
+
+REMEMBER: each time you change the code you must run
+'''
+docker-compose build
+'''
