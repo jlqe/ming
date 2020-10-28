@@ -28,8 +28,8 @@ ALLOWED_HOSTS = ['*']
 SITE_ID = 1
 
 ### Celery
-BROKER_URL = 'pyamqp://rabbitmq:5672'
-CELERY_RESULT_BACKEND='redis://redis:6379'
+BROKER_URL = 'pyamqp://192.168.1.194:5672'
+CELERY_RESULT_BACKEND='redis://192.168.1.194:6379'
 #: Only add pickle to this list if your broker is secured
 #: from unwanted access (see userguide/security.html)
 CELERY_ACCEPT_CONTENT = ['json']
@@ -44,10 +44,10 @@ CELERY_ACKS_LATE = True
 
 BLOCKS_PER_EPOCH = 360
 CHAIN_ID = 558
-RPC_ENDPOINT = 'wss://rpc.tao.network'
-#RPC_ENDPOINT = 'ws://localhost:8546'
-RESTFUL_ENDPOINT = 'https://rpc.tao.network'
-#RESTFUL_ENDPOINT = 'http://localhost:8545'
+#RPC_ENDPOINT = 'wss://rpc.tao.network'
+RPC_ENDPOINT = 'ws://192.168.1.194:8546'
+#RESTFUL_ENDPOINT = 'https://rpc.tao.network'
+RESTFUL_ENDPOINT = 'http://192.168.1.194:8545'
 VALIDATOR_CONTRACT_ADDRESS = '0x0000000000000000000000000000000000000088'
 SIGNER_CONTRACT_ADDRESS = '0x0000000000000000000000000000000000000089'
 RANDOMIZER_CONTRACT_ADDRESS = '0x0000000000000000000000000000000000000090'
@@ -83,6 +83,7 @@ INSTALLED_APPS = [
     'web',
     'rest_framework',
     'rest_framework_swagger',
+    'rest_framework_json_api',
 ]
 
 MIDDLEWARE = [
@@ -170,6 +171,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser'
+    ),
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

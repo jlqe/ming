@@ -18,6 +18,7 @@ import web3
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
 from eth_utils import to_bytes, to_hex
+
 rpc = Web3(Web3.HTTPProvider(settings.RESTFUL_ENDPOINT))
 rpc.middleware_onion.inject(geth_poa_middleware, layer=0)
 
