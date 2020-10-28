@@ -32,7 +32,7 @@ handler500 = 'web.views.handler500'
 
 urlpatterns = [
 	#path('admin/', admin.site.urls),
-	path('json-rpc/', json.JsonRpc.as_view()),
+	path('json-rpc/', jsonrpc.JsonRpc),
 	path('blocks/', block.BlockList.as_view()),
 	path('blocks/<int:pk>/', block.BlockDetail.as_view()),
 	path('blocksigner/<int:pk>/', block.BlockSignerDetail.as_view()),
