@@ -1,0 +1,45 @@
+from django.db import models
+from django.utils.translation import gettext_lazy as _
+
+class Contract (models.Model):
+    _hash = models.CharField(max_length=255, blank=False, db_index=True, unique=True)
+    contractName = models.CharField(max_length=255, blank=False)
+    compiler = models.CharField(max_length=255, blank=False)
+    sourceCode = models.TextField(blank=False)
+    abiCode = models.TextField(blank=False)
+    functionHashes = models.TextField(blank=False)
+    opcodes = models.TextField(blank=False)
+    bytecode = models.TextField(blank=False)
+    code = models.TextField(blank=False)
+    balance = models.CharField(max_length=255, blank=False)
+    balanceNumber = models.DecimalField(default=0,max_digits=99,decimal_places=18)
+    optimization = models.BooleanField(default=False)
+    txCount = models.IntegerField(default=0)
+
+class ContractEvent (models.Model):
+    address = models.CharField(max_length=255, blank=False, db_index=True)
+    blockNumber = models.BigIntegerField(default=0, db_index=True)
+    transactionHash = models.CharField(max_length=255, blank=False, db_index=True)
+    transactionIndex = models.IntegerField(default=0)
+    blockHash = models.CharField(max_length=255, blank=False, db_index=True)
+    logIndex = models.IntegerField(default=0)
+    removed = models.BooleanField(default=False)
+    _id = models.CharField(max_length=255, blank=False)
+    returnValues = models.TextField(blank=False)
+    event = models.CharField(max_length=255, blank=False)
+    signature = models.CharField(max_length=255, blank=False)
+    raw = models.TextField(blank=False)
+    functionHash = models.CharField(max_length=255, blank=False)
+    functionName = models.CharField(max_length=255, blank=False)
+
+class Log (models.Model):
+    address = models.CharField(max_length=255, blank=False, db_index=True)
+    blockNumber = models.BigIntegerField(default=0, db_index=True)
+    blockHash = models.CharField(max_length=255, blank=False, db_index=True)
+    data = models.TextField(blank=False)
+    _id = models.CharField(max_length=255, blank=False, db_index=True)
+    logIndex = models.IntegerField(default=0)
+    removed = models.BooleanField(default=False)
+    topics = models.TextField(blank=False)
+    transactionHash = models.CharField(max_length=255, blank=False, db_index=True)
+    transactionIndex = models.IntegerField(default=0)
